@@ -1,0 +1,3 @@
+
+CONNECTION OF MONGO ATLAS TO PROJECT(Link of Database)
+mongodb+srv://mayank_chugh:<db_password>@cluster0.fptyv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
