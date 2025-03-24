@@ -8,6 +8,7 @@ const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError.js');
 const session = require('express-session');
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo');
 const passport = require('passport')
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
@@ -37,6 +38,18 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));       //Static method is used to serve backend files (HTML,CSS, JS) to Frontend.
+
+const store = MongoStore.create({
+    mongoUrl : process.env.ATLASDB_URL,
+    crypto:{
+        secret : process.env.SECRET,
+    },
+    touchafter : 24*3600,
+})
+
+store.on("error",()=>{
+    console.log("some error occured",err); // if any error happens at mongo end in mongo sessio store
+})
 
 // Options or properties of session
 
