@@ -16,7 +16,7 @@ const listingsRoute = require('./routes/listing.js');
 const reviewsRoute = require('./routes/reviews.js');
 const userRoute = require('./routes/user.js');
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 async function main() {
     await mongoose.connect(process.env.ATLASDB_URL);
